@@ -1,31 +1,12 @@
 import React, {PropsWithChildren} from 'react';
 import {Typography} from '../Typography';
 import type {ImageSourcePropType, StyleProp, ViewStyle} from 'react-native';
-import {SafeAreaHeaderWrapper, StyledHeaderBackButton} from './components';
-import styled from 'styled-components/native';
+import {StyledHeaderBackButton} from './components';
+import {StyledContentView, Container, StyledBlock} from './styles';
 import {HEADER_HEIGHT} from './const';
 import {Colors} from '../../lib/theme';
 
 const {TitleBold2} = Typography;
-const Container = styled(SafeAreaHeaderWrapper)({
-  flexDirection: 'row',
-  paddingRight: 8,
-  paddingBottom: 6,
-  backgroundColor: Colors.alabaster,
-  justifyContent: 'center',
-  alignItems: 'center',
-});
-
-const StyledContentView = styled.View({
-  flex: 1,
-  paddingRight: 16,
-  marginLeft: 4,
-  alignItems: 'center',
-});
-
-const StyledBlock = styled.View({
-  paddingLeft: 16,
-});
 
 export type HeaderProps = {
   style?: StyleProp<ViewStyle>;
@@ -33,7 +14,6 @@ export type HeaderProps = {
   title?: string;
   showBackButton?: boolean;
   color?: string;
-  iconColor?: Colors;
   backIcon?: ImageSourcePropType;
 };
 
@@ -45,15 +25,10 @@ export const Header = ({
   children,
   showBackButton = true,
   color = Colors.black,
-  iconColor = Colors.black,
 }: PropsWithChildren<HeaderProps>) => (
   <Container style={style} height={HEADER_HEIGHT} paddingTop={6}>
     {showBackButton ? (
-      <StyledHeaderBackButton
-        onPress={onBackPress}
-        icon={backIcon}
-        color={iconColor}
-      />
+      <StyledHeaderBackButton onPress={onBackPress} icon={backIcon} />
     ) : (
       <StyledBlock />
     )}

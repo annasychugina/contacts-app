@@ -3,7 +3,7 @@ import React from 'react';
 import {Header} from '../../shared/ui/Header';
 
 import {EScreens, mockedUsers, RootStackParamList} from '../../shared/config';
-import {UserContacts} from '../../features/user-contacts/UserContacts';
+import {UserContacts} from '../../features/user-contacts';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {Container} from './styles';

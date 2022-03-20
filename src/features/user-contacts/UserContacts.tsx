@@ -1,5 +1,5 @@
 import React, {useRef, useState, useCallback} from 'react';
-import {FlatList} from 'react-native';
+import {FlatList, NativeScrollEvent, NativeSyntheticEvent} from 'react-native';
 import type {LayoutChangeEvent} from 'react-native';
 import {UserInfoList} from './user-info-list';
 import {UsersCarousel} from './user-carousel';
@@ -29,15 +29,11 @@ export const UserContacts = ({data, onUserAvatarPress}: Props) => {
         animated: true,
         offset: AVATAR_SIZE * index,
       });
-      userInfoFlatListRef.current?.scrollToOffset({
-        animated: true,
-        offset: containerScrollHeight * index,
-      });
     }
   };
 
-  const handleScroll = useCallback(
-    event => {
+  const handleCarouselScroll = useCallback(
+    (event: NativeSyntheticEvent<NativeScrollEvent>) => {
       const active = Math.ceil(
         event.nativeEvent.contentOffset.x / AVATAR_SIZE - 0.5,
       );
@@ -60,43 +56,49 @@ export const UserContacts = ({data, onUserAvatarPress}: Props) => {
     setIsActive(true);
   }, []);
 
-  const handleUserInfoTouch = useCallback(() => {
+  const handleUserListTouch = useCallback(() => {
     setIsActive(false);
   }, []);
 
   const handleScrollList = useCallback(
-    e => {
+    (event: NativeSyntheticEvent<NativeScrollEvent>) => {
       if (!isActive) {
         userCarouselFlatListRef.current?.scrollToOffset({
           animated: false,
           offset:
-            e.nativeEvent.contentOffset.y *
+            event.nativeEvent.contentOffset.y *
             (AVATAR_SIZE / containerScrollHeight),
         });
       }
     },
     [containerScrollHeight, isActive],
   );
-  const handleOnLayout = useCallback((e: LayoutChangeEvent) => {
-    setContainerScrollHeight(e.nativeEvent.layout.height);
-  }, []);
 
+  const onLayoutHandler = ({
+    nativeEvent: {
+      layout: {height: newHeight},
+    },
+  }: LayoutChangeEvent) => {
+    if (newHeight !== 0) {
+      setContainerScrollHeight(newHeight);
+    }
+  };
   return (
     <>
       <UsersCarousel
         ref={userCarouselFlatListRef}
         data={data}
-        onScroll={handleScroll}
         onTouch={handleCarouselTouch}
+        onScroll={handleCarouselScroll}
         onPress={handleAvatarPress}
       />
       <UserInfoList
         ref={userInfoFlatListRef}
         data={data}
         containerScrollHeight={containerScrollHeight}
-        onTouch={handleUserInfoTouch}
+        onTouch={handleUserListTouch}
         onScroll={handleScrollList}
-        onLayout={handleOnLayout}
+        onLayout={onLayoutHandler}
       />
     </>
   );
