@@ -10,6 +10,9 @@ type Shadow = {
 export const ShadowsSizes: Record<EShadow, number> = {
   [EShadow.S]: 1,
 };
+export const ShadowOpacities: Record<EShadow, number> = {
+  [EShadow.S]: 0.5,
+};
 
 export const makeShadow = (
   shadow?: EShadow,
@@ -19,5 +22,6 @@ export const makeShadow = (
     ? {
         elevation: `${ShadowsSizes[shadow]}`,
         shadowColor: color,
+        shadowOpacity: ShadowOpacities[shadow],
       }
     : {};

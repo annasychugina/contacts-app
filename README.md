@@ -1,6 +1,6 @@
 # contacts-app
 
-### install
+### Install
 ```
 yarn
 cd ios && pod install

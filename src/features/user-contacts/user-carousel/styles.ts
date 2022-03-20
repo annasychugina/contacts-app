@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {Animated} from 'react-native';
+import {Animated, Platform} from 'react-native';
 import {Colors, EShadow, makeShadow} from '../../../shared/lib/theme';
 
 export const StyledImage = styled.Image<{
@@ -46,8 +46,11 @@ export const AnimatedShadowLine = styled(Animated.View)({
   right: 0,
   bottom: 0,
   height: 1,
-  borderWidth: 0,
   borderColor: Colors.alabaster,
+  borderWidth: 0,
   shadowOffset: {width: 0, height: 1},
+  backgroundColor: Colors.white,
+  shadowRadius: 1.2,
+  transform: 'rotate(-180deg)',
   ...makeShadow(EShadow.S),
 });
