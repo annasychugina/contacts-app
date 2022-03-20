@@ -1,8 +1,8 @@
 import React from 'react';
 import {Container, StyledAbout, StyledNameRow, UserInfo} from './styles';
 import {Colors} from '../../../shared/lib/theme';
-import {Typography} from '../../../shared/ui/Typography';
-import {IUser} from '../../../entitites';
+import {Typography} from '@shared/ui/Typography';
+import {IUser} from '@entities';
 
 const {TitleRegular, TitleBold, NormalRegular, TitleBold2} = Typography;
 

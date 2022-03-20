@@ -1,8 +1,8 @@
 import React from 'react';
 import {Container, StyledAbout, StyledNameRow, StyledAvatar} from './styles';
-import {Colors} from '../../../shared/lib/theme';
-import {IUser} from '../../../entitites';
-import {Typography} from '../../../shared/ui/Typography';
+import {Colors} from '@shared/lib/theme';
+import {IUser} from '@entities';
+import {Typography} from '@shared/ui/Typography';
 
 import {localAvatarImageSource} from '../user-carousel/const';
 const {TitleRegular, TitleBold, NormalRegular, TitleBold2} = Typography;

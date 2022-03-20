@@ -1,13 +1,11 @@
 import React, {useMemo} from 'react';
-import {Header} from '../../shared/ui/Header';
-
-import {mockedUsers, RootStackParamList} from '../../shared/config';
-
+import {Header} from '@shared/ui/Header';
+import {mockedUsers, RootStackParamList} from '@shared/config';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {Container} from './styles';
 import {useRouteParams} from './hooks';
-import {UserDetails} from '../../features/user-contacts';
+import {UserDetails} from '@features/user-contacts';
 
 export const DetailsScreen = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();

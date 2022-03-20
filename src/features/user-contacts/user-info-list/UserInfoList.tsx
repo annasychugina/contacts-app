@@ -5,7 +5,7 @@ import type {
   ListRenderItem,
 } from 'react-native';
 import {NativeScrollEvent, NativeSyntheticEvent} from 'react-native';
-import {IUser} from '../../../entitites';
+import {IUser} from '@entities';
 import {StyledFlatList} from './styles';
 import {FlatList} from 'react-native';
 import {UserCard} from './UserCard';

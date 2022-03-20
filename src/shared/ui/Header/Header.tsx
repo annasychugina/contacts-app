@@ -10,11 +10,11 @@ const {TitleBold2} = Typography;
 
 export type HeaderProps = {
   style?: StyleProp<ViewStyle>;
-  onBackPress: () => void;
   title?: string;
   showBackButton?: boolean;
   color?: string;
   backIcon?: ImageSourcePropType;
+  onBackPress?: () => void;
 };
 
 export const Header = ({

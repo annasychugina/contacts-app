@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {Colors} from '../../shared/lib/theme';
+import {Colors} from '@shared/lib/theme';
 
 export const Container = styled.View({
   backgroundColor: Colors.white,

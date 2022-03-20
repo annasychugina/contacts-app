@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 
-import {Typography} from '../../../shared/ui/Typography';
-import {Colors} from '../../../shared/lib/theme';
+import {Typography} from '@shared/ui/Typography';
+import {Colors} from '@shared/lib/theme';
 
 const {NormalRegular} = Typography;
 

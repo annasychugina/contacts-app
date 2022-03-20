@@ -9,6 +9,8 @@ export const Container = styled(SafeAreaHeaderWrapper)({
   backgroundColor: Colors.alabaster,
   justifyContent: 'center',
   alignItems: 'center',
+  borderBottomWidth: 1,
+  borderColor: Colors.porcelain,
 });
 
 export const StyledContentView = styled.View({

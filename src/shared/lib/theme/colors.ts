@@ -5,4 +5,5 @@ export enum Colors {
   paleSlate = '#A9A8A9',
   white = '#ffffff',
   alabaster = '#FAF9FA',
+  porcelain = '#E7E9EB',
 }

@@ -3,8 +3,8 @@ import {FlatList, NativeScrollEvent, NativeSyntheticEvent} from 'react-native';
 import type {LayoutChangeEvent} from 'react-native';
 import {UserInfoList} from './user-info-list';
 import {UsersCarousel} from './user-carousel';
-import {IUser} from '../../entitites';
-import {WINDOW_HEIGHT} from '../../shared/ui/helpers';
+import {IUser} from '@entities';
+import {WINDOW_HEIGHT} from '@shared/ui/helpers';
 import {AVATAR_SIZE} from './const';
 
 type Props = {

@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
-import {Animated, Platform} from 'react-native';
-import {Colors, EShadow, makeShadow} from '../../../shared/lib/theme';
+import {Animated} from 'react-native';
+import {Colors, EShadow, makeShadow} from '@shared/lib/theme';
 
 export const StyledImage = styled.Image<{
   width: number;

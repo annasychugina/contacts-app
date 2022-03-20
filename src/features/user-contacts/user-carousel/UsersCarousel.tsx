@@ -6,7 +6,7 @@ import type {
   NativeSyntheticEvent,
 } from 'react-native';
 import {FlatList, Animated} from 'react-native';
-import {IUser} from '../../../entitites';
+import {IUser} from '@entities';
 import {
   StyledImage,
   ImageWrapper,
@@ -22,7 +22,7 @@ import {
   AVATAR_SIZE_WITHOUT_BORDER,
   AVATAR_SIZE_WITHOUT_MARGINS,
 } from '../const';
-import {WINDOW_WIDTH} from '../../../shared/ui/helpers';
+import {WINDOW_WIDTH} from '@shared/ui/helpers';
 
 type Props = {
   data: IUser[];

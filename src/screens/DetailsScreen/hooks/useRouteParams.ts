@@ -1,7 +1,7 @@
 import type {RouteProp} from '@react-navigation/native';
 import {useRoute} from '@react-navigation/native';
 
-import {RootStackParamList, EScreens} from '../../../shared/config';
+import {RootStackParamList, EScreens} from '@shared/config';
 
 export const useRouteParams = () => {
   const route =
