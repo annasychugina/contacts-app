@@ -22,6 +22,6 @@ export const makeShadow = (
     ? {
         elevation: `${ShadowsSizes[shadow]}`,
         shadowColor: color,
-        shadowOpacity: ShadowOpacities[shadow],
+        shadowOpacity: `${ShadowOpacities[shadow]}`,
       }
     : {};

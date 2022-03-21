@@ -1,6 +1,6 @@
 import React from 'react';
 import {Container, StyledAbout, StyledNameRow, UserInfo} from './styles';
-import {Colors} from '../../../shared/lib/theme';
+import {Colors} from '@shared/lib/theme';
 import {Typography} from '@shared/ui/Typography';
 import {IUser} from '@entities';
 
@@ -12,7 +12,7 @@ type Props = {
 
 export const UserCard = React.memo(
   ({containerScrollHeight, firstName, lastName, title, description}: Props) => (
-    <Container height={containerScrollHeight}>
+    <Container testID="userCard" height={containerScrollHeight}>
       <StyledNameRow>
         <TitleBold>{firstName + ' '}</TitleBold>
         <TitleRegular>{lastName}</TitleRegular>

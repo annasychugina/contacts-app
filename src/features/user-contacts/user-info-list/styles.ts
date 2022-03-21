@@ -2,7 +2,6 @@ import styled from 'styled-components/native';
 
 import {Typography} from '@shared/ui/Typography';
 import {Colors} from '@shared/lib/theme';
-import {FlatList} from 'react-native';
 
 const {NormalRegular} = Typography;
 
@@ -31,10 +30,3 @@ export const StyledAbout = styled(NormalRegular)({
   textAlign: 'left',
   alignSelf: 'center',
 });
-
-export const StyledFlatList = styled.FlatList({
-  contentContainerStyle: {
-    width: '100%',
-    flex: 1,
-  },
-}) as unknown as typeof FlatList;

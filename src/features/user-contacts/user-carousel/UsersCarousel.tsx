@@ -13,19 +13,18 @@ import {
   Container,
   Backdrop,
   AnimatedShadowLine,
+  contentContainerStyle,
 } from './styles';
-
-import {localAvatarImageSource} from './const';
 
 import {
   AVATAR_SIZE,
   AVATAR_SIZE_WITHOUT_BORDER,
   AVATAR_SIZE_WITHOUT_MARGINS,
 } from '../const';
-import {WINDOW_WIDTH} from '@shared/ui/helpers';
+import {IUserItem} from '../types';
 
 type Props = {
-  data: IUser[];
+  data: IUserItem[];
   onScroll: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
   onTouch?: (event: GestureResponderEvent) => void;
   onPress?: (index: number, item: IUser) => void;
@@ -56,9 +55,9 @@ export const UsersCarousel = React.forwardRef<FlatList, Props>(
     const inputRange = useMemo(
       () =>
         data.flatMap((item, index) => [
-          (index - 0.5) * AVATAR_SIZE,
-          index * AVATAR_SIZE,
-          (index + 0.5) * AVATAR_SIZE,
+          AVATAR_SIZE * (index - 0.5),
+          AVATAR_SIZE * index,
+          AVATAR_SIZE * (index + 0.5),
         ]),
       [data],
     );
@@ -74,7 +73,7 @@ export const UsersCarousel = React.forwardRef<FlatList, Props>(
     };
 
     const renderUserItem = useCallback(
-      ({item, index}: ListRenderItemInfo<IUser>) => (
+      ({item, index}: ListRenderItemInfo<IUserItem>) => (
         <ImageWrapper
           onPress={() => onPress?.(index, item)}
           width={AVATAR_SIZE_WITHOUT_MARGINS}
@@ -85,9 +84,9 @@ export const UsersCarousel = React.forwardRef<FlatList, Props>(
               borderRadius: AVATAR_SIZE_WITHOUT_MARGINS,
               opacity: translateX.interpolate({
                 inputRange: [
-                  (index - 1) * AVATAR_SIZE,
-                  index * AVATAR_SIZE,
-                  (index + 1) * AVATAR_SIZE,
+                  AVATAR_SIZE * (index - 1),
+                  AVATAR_SIZE * index,
+                  AVATAR_SIZE * (index + 1),
                 ],
                 outputRange: [0, 1, 0],
                 extrapolate: 'clamp',
@@ -95,8 +94,9 @@ export const UsersCarousel = React.forwardRef<FlatList, Props>(
             }}
           />
           <StyledImage
+            testID="userAvatar"
             resizeMode="cover"
-            source={localAvatarImageSource[item.image]}
+            source={item.imageSource}
             width={AVATAR_SIZE_WITHOUT_BORDER}
             height={AVATAR_SIZE_WITHOUT_BORDER}
             borderRadius={AVATAR_SIZE_WITHOUT_BORDER}
@@ -110,6 +110,7 @@ export const UsersCarousel = React.forwardRef<FlatList, Props>(
       <Container>
         <AnimatedShadowLine style={shadowStyle} />
         <FlatList
+          testID="userCarousel"
           ref={ref}
           data={data}
           centerContent
@@ -120,9 +121,7 @@ export const UsersCarousel = React.forwardRef<FlatList, Props>(
           renderItem={renderUserItem}
           keyExtractor={keyExtractor}
           onTouchStart={onTouch}
-          contentContainerStyle={{
-            paddingHorizontal: (WINDOW_WIDTH - AVATAR_SIZE) / 2,
-          }}
+          contentContainerStyle={contentContainerStyle}
           decelerationRate="fast"
           scrollEventThrottle={16}
         />

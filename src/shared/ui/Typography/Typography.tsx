@@ -4,9 +4,6 @@ import styled from 'styled-components/native';
 import type {ComponentType} from 'react';
 import {Colors} from '../../lib/theme';
 
-import {spacings} from '../helpers';
-import type {SpacingsProps} from '../helpers';
-
 export interface ColoredTextProps {
   color?: string;
   textAlign?: TextStyle['textAlign'];
@@ -14,15 +11,12 @@ export interface ColoredTextProps {
 }
 
 const ColoredText = styled(
-  Text as ComponentType<
-    TextProps & ColoredTextProps & SpacingsProps & {lineHeight?: number}
-  >,
-)(({color, textAlign, flexShrink, lineHeight, ...props}) => ({
+  Text as ComponentType<TextProps & ColoredTextProps & {lineHeight?: number}>,
+)(({color, textAlign, flexShrink, lineHeight}) => ({
   color: color || Colors.black,
   textAlign: (textAlign || 'left') as never,
   lineHeight,
   flexShrink,
-  ...spacings(props),
 }));
 
 const addPx = (value?: number) =>

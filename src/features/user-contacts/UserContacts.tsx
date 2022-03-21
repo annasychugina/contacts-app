@@ -1,4 +1,4 @@
-import React, {useRef, useState, useCallback} from 'react';
+import React, {useRef, useState, useCallback, useMemo} from 'react';
 import {FlatList, NativeScrollEvent, NativeSyntheticEvent} from 'react-native';
 import type {LayoutChangeEvent} from 'react-native';
 import {UserInfoList} from './user-info-list';
@@ -6,6 +6,8 @@ import {UsersCarousel} from './user-carousel';
 import {IUser} from '@entities';
 import {WINDOW_HEIGHT} from '@shared/ui/helpers';
 import {AVATAR_SIZE} from './const';
+import {localAvatarImageSource} from './const';
+import {IUserItem} from './types';
 
 type Props = {
   data: IUser[];
@@ -20,6 +22,14 @@ export const UserContacts = ({data, onUserAvatarPress}: Props) => {
 
   const [isActive, setIsActive] = useState(false);
   const [activeIcon, setActiveIcon] = useState(0);
+
+  const contacts = useMemo<IUserItem[]>(
+    () =>
+      data.map(item => {
+        return {...item, imageSource: localAvatarImageSource[item.image]};
+      }),
+    [data],
+  );
 
   const handleAvatarPress = (index: number, item: IUser) => {
     if (activeIcon === index) {
@@ -52,13 +62,13 @@ export const UserContacts = ({data, onUserAvatarPress}: Props) => {
     [activeIcon, containerScrollHeight, isActive],
   );
 
-  const handleCarouselTouch = useCallback(() => {
+  const handleCarouselTouch = () => {
     setIsActive(true);
-  }, []);
+  };
 
-  const handleUserListTouch = useCallback(() => {
+  const handleUserListTouch = () => {
     setIsActive(false);
-  }, []);
+  };
 
   const handleScrollList = useCallback(
     (event: NativeSyntheticEvent<NativeScrollEvent>) => {
@@ -87,14 +97,14 @@ export const UserContacts = ({data, onUserAvatarPress}: Props) => {
     <>
       <UsersCarousel
         ref={userCarouselFlatListRef}
-        data={data}
+        data={contacts}
         onTouch={handleCarouselTouch}
         onScroll={handleCarouselScroll}
         onPress={handleAvatarPress}
       />
       <UserInfoList
         ref={userInfoFlatListRef}
-        data={data}
+        data={contacts}
         containerScrollHeight={containerScrollHeight}
         onTouch={handleUserListTouch}
         onScroll={handleScrollList}

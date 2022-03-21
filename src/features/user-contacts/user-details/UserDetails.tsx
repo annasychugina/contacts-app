@@ -4,7 +4,7 @@ import {Colors} from '@shared/lib/theme';
 import {IUser} from '@entities';
 import {Typography} from '@shared/ui/Typography';
 
-import {localAvatarImageSource} from '../user-carousel/const';
+import {localAvatarImageSource} from '../const';
 const {TitleRegular, TitleBold, NormalRegular, TitleBold2} = Typography;
 
 type Props = {

@@ -47,6 +47,7 @@
   },
   "jest": {
     "preset": "react-native",
+    "testRegex": ".*test\\.(js|ts|tsx)$",
     "moduleFileExtensions": [
       "ts",
       "tsx",
@@ -55,8 +56,15 @@
       "json",
       "node"
     ],
+    "setupFiles": [
+      "<rootDir>/__tests__/setup.js",
+      "./node_modules/react-native-gesture-handler/jestSetup.js"
+    ],
     "setupFilesAfterEnv": [
       "@testing-library/jest-native/extend-expect"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?@?react-native|@react-native-community|@react-navigation)"
     ]
   }
 }

@@ -1,32 +1,38 @@
 import React from 'react';
 import type {
+  FlatListProps,
   GestureResponderEvent,
   LayoutChangeEvent,
   ListRenderItem,
 } from 'react-native';
 import {NativeScrollEvent, NativeSyntheticEvent} from 'react-native';
 import {IUser} from '@entities';
-import {StyledFlatList} from './styles';
 import {FlatList} from 'react-native';
 import {UserCard} from './UserCard';
+import {IUserItem} from '../types';
 
 type Props = {
-  data: IUser[];
+  data: IUserItem[];
   containerScrollHeight: number;
   onTouch?: (event: GestureResponderEvent) => void;
   onScroll: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
   onLayout?: (event: LayoutChangeEvent) => void;
+  onEndReached?: FlatListProps<IUser>['onEndReached'];
 };
 
 const keyExtractor = (item: IUser) => item.id.toString();
 
 export const UserInfoList = React.forwardRef<FlatList<IUser>, Props>(
-  ({data, containerScrollHeight, onTouch, onScroll, onLayout}, ref) => {
+  (
+    {data, containerScrollHeight, onTouch, onEndReached, onScroll, onLayout},
+    ref,
+  ) => {
     const renderUserItem: ListRenderItem<IUser> = ({item}) => (
       <UserCard {...item} containerScrollHeight={containerScrollHeight} />
     );
     return (
-      <StyledFlatList
+      <FlatList
+        testID="userInfoList"
         ref={ref}
         data={data}
         renderItem={renderUserItem}
@@ -39,6 +45,7 @@ export const UserInfoList = React.forwardRef<FlatList<IUser>, Props>(
         showsVerticalScrollIndicator={false}
         decelerationRate="fast"
         scrollEventThrottle={16}
+        onEndReached={onEndReached}
       />
     );
   },
